@@ -1,16 +1,16 @@
 package commClasses;
 
 import classes.*;
-import collection.CollectionControl;
+import collection.CollectionController;
 
 import java.util.Objects;
 
 public class Insert extends Command{
-    CollectionControl collectionControl;
+    CollectionController collectionController;
     String[] args;
-    public Insert(CollectionControl collectionControl, String[] Args){
+    public Insert(CollectionController collectionController, String[] Args){
         super("insert", "добавить новый элемент с заданным ключом. Инструкции: insert man", "null {element} ");
-        this.collectionControl = collectionControl;
+        this.collectionController = collectionController;
         this.args = Args;
     }
     //name, coordinates, age, color, type, character, cave
@@ -32,7 +32,7 @@ public class Insert extends Command{
                     "2. GOOD \n" +
                     "3. CHAOTIC_EVIL \n");
         }else {
-            collectionControl.addWithKey(Integer.parseInt(args[0]), new Dragon(
+            collectionController.addWithKey(Integer.parseInt(args[0]), new Dragon(
                     args[1],
                     Coordinates.toCoordinates(args[2].split("/")[0] + " " + args[2].split("/")[1]),
                     Integer.parseInt(args[3]),

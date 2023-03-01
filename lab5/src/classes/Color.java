@@ -8,7 +8,7 @@ public enum Color {
     BROWN;
     public static Color toColor(String string){
         switch (string) {
-            case ("GREEN") : return GREEN;
+            case "GREEN" : return GREEN;
             case ("RED") : return RED;
             case ("BLUE") : return BLUE;
             case ("YELLOW") : return YELLOW;

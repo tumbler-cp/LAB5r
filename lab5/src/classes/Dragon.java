@@ -1,6 +1,5 @@
 package classes;
 
-import collection.CollectionControl;
 import terminal.Terminal;
 
 import java.time.LocalDate;
@@ -54,60 +53,78 @@ public class Dragon implements Check, Comparable<Dragon>{
     public void setAge(int age) {
         this.age = age;
     }
+
     public int getAge() {
         return age;
     }
+
     public void setCave(DragonCave cave) {
         this.cave = cave;
     }
+
     public DragonCave getCave() {
         return cave;
     }
+
     public void setCharacter(DragonCharacter character) {
         this.character = character;
     }
+
     public DragonCharacter getCharacter() {
         return character;
     }
+
     public void setColor(Color color) {
         this.color = color;
     }
+
     public Color getColor() {
         return color;
     }
+
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
+
     public Coordinates getCoordinates() {
         return coordinates;
     }
+
     public void setCreationDate(String s) {
         LocalDate creationDate;
         String[] c = s.split("-");
         creationDate = LocalDate.of(Integer.parseInt(c[0]), Integer.parseInt(c[1]) , Integer.parseInt(c[2]));
         this.creationDate = creationDate;
     }
+
     public LocalDate getCreationDate() {
         return creationDate;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public Integer getId() {
         return id;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }
+
     public void setType(DragonType type) {
         this.type = type;
     }
+
     public DragonType getType() {
         return type;
     }
+
     public void printInfo(){
         System.out.print(
                 Terminal.BLUE + "Id: " + Terminal.RESET + this.id + "\n"+
@@ -124,9 +141,10 @@ public class Dragon implements Check, Comparable<Dragon>{
         );
     }
 
+
     @Override
     public int compareTo(Dragon o) {
-        return this.id.compareTo(o.getId());
+        return this.getId().compareTo(o.getId());
     }
 }
 

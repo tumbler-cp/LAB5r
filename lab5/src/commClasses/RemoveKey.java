@@ -1,14 +1,14 @@
 package commClasses;
 
-import collection.CollectionControl;
+import collection.CollectionController;
 
 public class RemoveKey extends Command
 {
-    CollectionControl control;
+    CollectionController control;
     String arg;
-    public RemoveKey(CollectionControl collectionControl){
+    public RemoveKey(CollectionController collectionController){
         super("remove_key", "удалить элемент из коллекции по его ключу", "null");
-        this.control = collectionControl;
+        this.control = collectionController;
     }
 
     @Override

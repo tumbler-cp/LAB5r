@@ -1,14 +1,10 @@
 package commClasses;
 
-import classes.Dragon;
-import collection.CollectionControl;
-
-import java.util.HashMap;
-import java.util.Map;
+import collection.CollectionController;
 
 public class Clear extends Command {
-    CollectionControl collection;
-    public Clear(CollectionControl COLLECTION){
+    CollectionController collection;
+    public Clear(CollectionController COLLECTION){
         super("clear", "очистить коллекцию");
         this.collection = COLLECTION;
     }

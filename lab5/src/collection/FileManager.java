@@ -7,9 +7,9 @@ import java.io.FileReader;
 
 
 public class FileManager {
-    CollectionControl collectionControl;
-    public FileManager(String filename, CollectionControl collControl) throws Exception {
-        this.collectionControl = collControl;
+    CollectionController collectionController;
+    public FileManager(String filename, CollectionController collControl) throws Exception {
+        this.collectionController = collControl;
         this.read(filename);
     }
     public void read(String filename) throws Exception
@@ -18,8 +18,9 @@ public class FileManager {
         CSVReader fileIn = new CSVReader(new FileReader(filename));
         String[] buff;
         while ((buff = fileIn.readNext())!=null) {
+            if (buff.length < 9) break;
             String[] finalBuff = buff;
-            this.collectionControl.add(new Dragon(
+            this.collectionController.add(new Dragon(
                     finalBuff[1],
                     Coordinates.toCoordinates(finalBuff[2]),
                     Integer.valueOf(finalBuff[4]),

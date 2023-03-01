@@ -5,6 +5,7 @@ import terminal.Terminal;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -13,6 +14,8 @@ public class ExecuteScript extends Command {
     private String filename;
     private FileReader file;
     private Scanner input;
+    private List<String> workingFiles;
+
     public ExecuteScript(Terminal TERMINAL){
         super("execute_script", "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.", "file_name");
         this.terminal = TERMINAL;

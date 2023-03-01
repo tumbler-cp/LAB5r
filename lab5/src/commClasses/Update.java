@@ -1,14 +1,14 @@
 package commClasses;
 
 import classes.*;
-import collection.CollectionControl;
+import collection.CollectionController;
 
 public class Update extends Command{
-    CollectionControl control;
+    CollectionController control;
     private String[] arg;
-    public Update(CollectionControl collectionControl){
+    public Update(CollectionController collectionController){
         super("update", "обновить значение элемента коллекции, id которого равен заданному. Инструкции: update man.", "id {element}");
-        this.control = collectionControl;
+        this.control = collectionController;
     }
 
     //name, coordinates, age, color, type, character, cave
