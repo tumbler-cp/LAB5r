@@ -1,22 +1,22 @@
 package classes;
 
 public enum DragonCharacter {
-    CUNNING,
-    EVIL,
-    CHAOTIC;
+    WISE,
+    GOOD,
+    CHAOTIC_EVIL;
     public static DragonCharacter toDragonCharacter(String string) {
         switch (string) {
-            case ("CUNNING") : return CUNNING;
-            case ("EVIL") : return EVIL;
-            case ("CHAOTIC") : return CHAOTIC;
+            case ("WISE") : return WISE;
+            case ("GOOD") : return GOOD;
+            case ("CHAOTIC_EVIL") : return CHAOTIC_EVIL;
         }
         return null;
     }
     public static DragonCharacter toDragonCharacter(int s) {
         switch (s) {
-            case (1) : return CUNNING;
-            case (2) : return EVIL;
-            case (3) : return CHAOTIC;
+            case (1) : return WISE;
+            case (2) : return GOOD;
+            case (3) : return CHAOTIC_EVIL;
         }
         return null;
     }

@@ -1,36 +1,40 @@
 package classes;
 
-public class Coordinates implements Check {
-    private Long x; //Поле не может быть null
-    private double y; //Максимальное значение поля: 346
+public class Coordinates {
+    private float x; //Поле не может быть null
+    private float y; //Максимальное значение поля: 346
     public Coordinates(double x, double y){
-        this.x = (long) x;
-        this.y = y;
-    }
-    public boolean check(){
-        return this.x!=null && this.y <= 346;
+        this.x = (float) x;
+        this.y = (float) y;
     }
     public static Coordinates toCoordinates(String string){
-        double x = Double.parseDouble(string.split(" ")[0]);
-        double y = Double.parseDouble(string.split(" ")[1]);
+        float x, y;
+        try {
+            x = Float.parseFloat(string.split(" ")[0]);
+            y = Float.parseFloat(string.split(" ")[1]);
+        } catch (IndexOutOfBoundsException i){
+            x = Float.parseFloat(string.split("/")[0]);
+            y = Float.parseFloat(string.split("/")[1]);
+        }
+
         return new Coordinates(x, y);
     }
 
     @Override
     public String toString() {
-        return this.x + " x " + (int) this.y;
+        return this.x + " " + this.y;
     }
 
-    public void setX(Long x) {
+    public void setX(float x) {
         this.x = x;
     }
-    public void setY(double y) {
+    public void setY(float y) {
         this.y = y;
     }
-    public Long getX() {
+    public float getX() {
         return x;
     }
-    public double getY() {
+    public float getY() {
         return y;
     }
 }

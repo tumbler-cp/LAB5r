@@ -1,13 +1,9 @@
 package classes;
 
+import collection.CollectionControl;
 import terminal.Terminal;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 public class Dragon implements Check, Comparable<Dragon>{
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
@@ -20,7 +16,7 @@ public class Dragon implements Check, Comparable<Dragon>{
     private DragonCave cave; //Поле может быть null
     //id, name, coordinates, creationDate, age, color, type, character, cave
     public Dragon(String name, Coordinates coordinates, Integer age, Color color, DragonType type, DragonCharacter character, DragonCave cave){
-        this.id = currentId;
+        this.id = maxId;
         Dragon.updateId();
         this.name = name;
         this.coordinates = coordinates;
@@ -29,13 +25,20 @@ public class Dragon implements Check, Comparable<Dragon>{
         this.type = type;
         this.character = character;
         this.cave = cave;
-        Date getter = new Date();
         this.creationDate = LocalDate.now();
     }
 
-    private static int currentId = 1;
+    private static int maxId = 1;
     public static void updateId(){
-        currentId += 1;
+        maxId += 1;
+    }
+
+    public static void setMaxId(int maxId) {
+        Dragon.maxId = maxId;
+    }
+
+    public static int getMaxId() {
+        return maxId;
     }
 
     public boolean check() {
@@ -78,7 +81,10 @@ public class Dragon implements Check, Comparable<Dragon>{
     public Coordinates getCoordinates() {
         return coordinates;
     }
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(String s) {
+        LocalDate creationDate;
+        String[] c = s.split("-");
+        creationDate = LocalDate.of(Integer.parseInt(c[0]), Integer.parseInt(c[1]) , Integer.parseInt(c[2]));
         this.creationDate = creationDate;
     }
     public LocalDate getCreationDate() {
@@ -102,26 +108,13 @@ public class Dragon implements Check, Comparable<Dragon>{
     public DragonType getType() {
         return type;
     }
-    public List<Object> info(){
-        List<Object> returnable = new ArrayList<Object>();
-        returnable.add(this.id);
-        returnable.add(this.name);
-        returnable.add(this.coordinates);
-        returnable.add(this.creationDate);
-        returnable.add(this.age);
-        returnable.add(this.color);
-        returnable.add(this.type);
-        returnable.add(this.character);
-        returnable.add(this.cave);
-        return returnable;
-    }
     public void printInfo(){
         System.out.print(
                 Terminal.BLUE + "Id: " + Terminal.RESET + this.id + "\n"+
                 Terminal.BLUE + "Name: " + Terminal.RESET + this.name + "\n"+
                 Terminal.BLUE + "Coordinates: " + Terminal.RESET + this.coordinates + "\n"+
                 Terminal.BLUE + "CreationDate: " + Terminal.RESET);
-        System.out.printf("%d.%d.%d \n", this.creationDate.getDayOfMonth(), this.creationDate.getMonthValue(), this.creationDate.getYear());
+        System.out.printf("%d-%d-%d \n", this.creationDate.getYear(), this.creationDate.getMonthValue(),this.creationDate.getDayOfMonth());
         System.out.println(
                 Terminal.BLUE + "Age: " + Terminal.RESET + this.age + "\n"+
                 Terminal.BLUE + "Color: " + Terminal.RESET + this.color + "\n"+

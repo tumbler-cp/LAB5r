@@ -1,0 +1,6 @@
+help
+show
+clear
+execute_script file1.txt
+show
+history

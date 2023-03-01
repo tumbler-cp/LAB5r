@@ -11,7 +11,7 @@ public class Help extends Command{
     }
     public void execute(){
         commDictionary.getAll().forEach(command -> {
-            System.out.println(Terminal.PURPLE + command.getName() + " : " + Terminal.RESET + command.getDescription());
+            System.out.println(Terminal.PURPLE + command.getName() + " " + command.getArgs() + " : " + Terminal.RESET + command.getDescription());
         });
     }
 }

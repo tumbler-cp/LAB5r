@@ -1,7 +1,7 @@
 package classes;
 
 public class DragonCave implements Check {
-    private int numberOfTreasures; //Значение поля должно быть больше 0
+    private long numberOfTreasures; //Значение поля должно быть больше 0
     public DragonCave(int number_Of_Treasures){
         this.numberOfTreasures = number_Of_Treasures;
     }

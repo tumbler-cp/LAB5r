@@ -9,7 +9,7 @@ public class Insert extends Command{
     CollectionControl collectionControl;
     String[] args;
     public Insert(CollectionControl collectionControl, String[] Args){
-        super("insert", " null {element} добавить новый элемент с заданным ключом.\nEnter 'insert man' to see how to add new objects to collection and their parameters.");
+        super("insert", "добавить новый элемент с заданным ключом. Инструкции: insert man", "null {element} ");
         this.collectionControl = collectionControl;
         this.args = Args;
     }
@@ -18,19 +18,19 @@ public class Insert extends Command{
         if (Objects.equals(args[0], "man")){
             System.out.println("Syntax: insert <Integer key(id)> <String name> <x/y(coordinates)> <int age> <int color> <int type> <int character> <int cave(Num of treasures)>");
             System.out.println("Color: \n" +
-                    "1. RED \n" +
-                    "2. YELLOW \n" +
-                    "3. ORANGE \n" +
-                    "4. WHITE \n" +
+                    "1. GREEN \n" +
+                    "2. RED \n" +
+                    "3. BLUE \n" +
+                    "4. YELLOW \n" +
                     "5. BROWN \n" +
                     "Type: \n" +
                     "1. UNDERGROUND \n" +
                     "2. AIR \n" +
                     "3. FIRE \n" +
                     "Character: \n" +
-                    "1. CUNNING \n" +
-                    "2. EVIL \n" +
-                    "3. CHAOTIC \n");
+                    "1. WISE \n" +
+                    "2. GOOD \n" +
+                    "3. CHAOTIC_EVIL \n");
         }else {
             collectionControl.addWithKey(Integer.parseInt(args[0]), new Dragon(
                     args[1],

@@ -10,8 +10,7 @@ import terminal.Terminal;
 
 public class Main {
     /**
-     *
-     * You are able to control every parameter of the app from here - method main().
+     * Здесь нужно обязательно создать экземпляры CollectionControl, History, Terminal, FileManager
      *
      */
     public static void main(String[] args) throws Exception {
@@ -26,8 +25,12 @@ public class Main {
             addCommand(history);
             addCommand(new Show(control));
             addCommand(new Insert(control, null));
+            addCommand(new Save(args[0], control));
+            addCommand(new RemoveKey(control));
+            addCommand(new Update(control));
         }};
         Terminal console = new Terminal(userIn, commDictionary, history);
+        commDictionary.addCommand(new ExecuteScript(console));
         FileManager mainFM = new FileManager(args[0], control);
         console.run();
     }
