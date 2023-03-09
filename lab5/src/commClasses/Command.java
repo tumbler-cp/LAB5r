@@ -1,11 +1,10 @@
 package commClasses;
 
-import java.io.FileNotFoundException;
-
 public abstract class Command {
-    private String name;
-    private String description;
-    private String args = "";
+    protected String name;
+    protected String description;
+    protected String argsText = "";
+    protected String[] args;
     public Command(){}
     public Command(String NAME, String DESCRIPTION){
         this.name = NAME;
@@ -13,7 +12,7 @@ public abstract class Command {
     }
     public Command(String NAME, String DESCRIPTION, String ARGS){
         this(NAME, DESCRIPTION);
-        this.args = ARGS;
+        this.argsText = ARGS;
     }
     public String getName() {
         return name;
@@ -22,8 +21,12 @@ public abstract class Command {
         return description;
     }
 
-    public String getArgs() {
-        return args;
+    public String getArgsText() {
+        return argsText;
+    }
+
+    public void setArgs(String[] args) {
+        this.args = args;
     }
 
     public void execute() {}

@@ -32,15 +32,20 @@ public class Insert extends Command{
                     "2. GOOD \n" +
                     "3. CHAOTIC_EVIL \n");
         }else {
-            collectionController.addWithKey(Integer.parseInt(args[0]), new Dragon(
+            if (!collectionController.addWithKey(
+                    Integer.parseInt(args[0]),
+                    new Dragon(
                     args[1],
                     Coordinates.toCoordinates(args[2].split("/")[0] + " " + args[2].split("/")[1]),
                     Integer.parseInt(args[3]),
                     Color.toColor(Integer.parseInt(args[4])),
                     DragonType.toDragonType(Integer.parseInt(args[5])),
                     DragonCharacter.toDragonCharacter(Integer.parseInt(args[6])),
-                    new DragonCave(Integer.parseInt(args[7]))
-            ));
+                    new DragonCave(Integer.parseInt(args[7])
+                    )
+            ))){
+                System.out.println("Дракон с id " + args[0]+" не подходит под условия.");
+            }
         }
     }
 

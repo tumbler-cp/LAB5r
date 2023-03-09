@@ -1,10 +1,8 @@
 package terminal;
 
-import collection.CommDictionary;
+import collection.CommandList;
 import commClasses.*;
 
-import java.io.FileNotFoundException;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -18,61 +16,39 @@ public class Terminal {
     public static final String PURPLE = "\u001B[35m";
     public static final String CYAN = "\u001B[36m";
     public static final String WHITE = "\u001B[37m";
-    private CommDictionary commDictionary;
+    private CommandList commandList;
     private Scanner input;
     History history;
-    public Terminal(Scanner input, CommDictionary commDictionary, History history){
-        this.commDictionary = commDictionary;
+    public Terminal(Scanner input, CommandList commandList, History history){
+        this.commandList = commandList;
         this.input = input;
         this.history = history;
     }
     public void executeCommand(String comm, String[] args){
         AtomicBoolean k = new AtomicBoolean(true);
-        commDictionary.getAll().forEach(command -> {
-            if(Objects.equals(comm, "insert")){
-                if (Objects.equals(comm, command.getName())){
-                    ((Insert) command).setArgs(args);
-                    command.execute();
-                    k.set(false);
-                    history.addCommand(command);
-                }
-            }
-            else if(Objects.equals(comm, "execute_script")){
-                if (Objects.equals(comm, command.getName())){
-                    try {
-                        ((ExecuteScript) command).setFilename(args[0]);
-                    } catch (FileNotFoundException e) {
-                        System.out.println("Файла" + args[0] + "не существует");
-                    }
-                    command.execute();
-                    k.set(false);
-                    history.addCommand(command);
-                }
-            }
-            else if(Objects.equals(comm, "remove_key")){
-                if (Objects.equals(comm, command.getName())){
-                    ((RemoveKey) command).setArg(args[0]);
-                    command.execute();
-                    k.set(false);
-                    history.addCommand(command);
-                }
-            }
-            else if(Objects.equals(comm, "update")){
-                if (Objects.equals(comm, command.getName())){
-                    ((Update) command).setArg(args);
-                    command.execute();
-                    k.set(false);
-                    history.addCommand(command);
-                }
-            }
-            else if(Objects.equals(comm, command.getName())) {
-                command.execute();
-                k.set(false);
-                history.addCommand(command);
+        commandList.getAll().values().forEach(command -> {
+            if (comm.equals(command.getName())) {
+                if (args.length > 0) this.argExecute(command, args, k);
+                else this.normalExecute(command, k);
             }
         });
-        if (k.get()) System.out.println("No such command: "+comm);
+        if (k.get()) System.out.println("No such command: " + comm);
     }
+
+
+    private void normalExecute(Command command, AtomicBoolean checker){
+        command.execute();
+        history.addCommand(command);
+        checker.set(false);
+    }
+
+    private void argExecute(Command command, String[] args, AtomicBoolean checker){
+        command.setArgs(args);
+        command.execute();
+        history.addCommand(command);
+        checker.set(false);
+    }
+
     public void run(){
         while (true){
             System.out.print(GREEN);

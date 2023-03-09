@@ -15,16 +15,16 @@ public class CollectionController
     public void clear(){
         collection.clear();
     }
-    public void add(Dragon dragon){
+    public boolean add(Dragon dragon){
         if (dragon.check() && dragon.getCave().check()) {
             this.IdCheck(dragon);
             collection.put(dragon.getId(), dragon);
+            Dragon.setMaxId(this.getBiggestId());
+            return true;
         }
         else {
-            System.out.println("Следующий дракон не подходит под условия:");
-            dragon.printInfo();
+            return false;
         }
-        Dragon.setMaxId(this.getBiggestId());
     }
     private void IdCheck(Dragon dragon){
         for(Dragon d : collection.values()){
@@ -34,9 +34,9 @@ public class CollectionController
             }
         }
     }
-    public void addWithKey(Integer key, Dragon dragon){
+    public boolean addWithKey(Integer key, Dragon dragon){
         dragon.setId(key);
-        this.add(dragon);
+        return this.add(dragon);
     }
     public void remove(Dragon dragon){
         collection.remove(dragon.getId());

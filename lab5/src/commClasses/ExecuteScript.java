@@ -21,10 +21,10 @@ public class ExecuteScript extends Command {
         this.terminal = TERMINAL;
     }
 
-    public void setFilename(String filename)  throws FileNotFoundException {
+    public void setFilename()  throws FileNotFoundException {
+        this.filename = args[0];
         this.file = new FileReader(filename);
         this.input = new Scanner(file);
-        this.filename = filename;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ExecuteScript extends Command {
             if (Objects.equals(comm, "execute_script")){
                 var i = new ExecuteScript(terminal);
                 try {
-                    i.setFilename(arguments[0]);
+                    i.setFilename();
                 } catch (FileNotFoundException f){
                     System.out.println("Файла " + arguments[0] + " нет");
                 }

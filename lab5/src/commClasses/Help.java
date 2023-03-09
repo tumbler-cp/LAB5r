@@ -1,17 +1,17 @@
 package commClasses;
 
-import collection.CommDictionary;
+import collection.CommandList;
 import terminal.Terminal;
 
 public class Help extends Command{
-    private CommDictionary commDictionary;
-    public Help(CommDictionary dictionary){
+    private CommandList commandList;
+    public Help(CommandList dictionary){
         super("help", "вывести справку по доступным командам");
-        this.commDictionary = dictionary;
+        this.commandList = dictionary;
     }
     public void execute(){
-        commDictionary.getAll().forEach(command -> {
-            System.out.println(Terminal.PURPLE + command.getName() + " " + command.getArgs() + " : " + Terminal.RESET + command.getDescription());
+        commandList.getAll().values().forEach(command -> {
+            System.out.println(Terminal.PURPLE + command.getName() + " " + command.getArgsText() + " : " + Terminal.RESET + command.getDescription());
         });
     }
 }
