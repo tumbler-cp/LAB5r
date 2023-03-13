@@ -1,0 +1,5 @@
+help
+execute_script script1.txt
+show
+info
+history
