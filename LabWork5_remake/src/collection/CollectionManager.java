@@ -28,6 +28,10 @@ public class CollectionManager {
         return this.dragons;
     }
 
+    public List<Dragon> get_list(){
+        return new ArrayList<>(this.dragons.values());
+    }
+
     @Override
     public String toString() {
         String valueType = "";

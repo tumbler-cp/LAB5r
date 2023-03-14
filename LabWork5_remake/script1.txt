@@ -2,3 +2,4 @@ info
 info
 info
 history
+execute_script script3e.txt

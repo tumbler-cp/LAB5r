@@ -4,6 +4,7 @@ import collection.CollectionManager;
 import dragon.Dragon;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -16,8 +17,7 @@ public class PrintAscending extends Command{
 
     @Override
     public void execute(AtomicBoolean lever) {
-        ArrayList<Dragon> list = new ArrayList<>();
-        this.collection.get_collection().values().forEach(list::add);
+        List<Dragon> list = collection.get_list();
         Collections.sort(list);
         for (Dragon d : list) System.out.println(d);
     }

@@ -1,6 +1,6 @@
 package dragon;
 
-public class Coordinates {
+public class Coordinates implements Comparable{
     private float x; //Поле не может быть null
     private float y; //Максимальное значение поля: 346
     public Coordinates(double x, double y){
@@ -36,5 +36,12 @@ public class Coordinates {
     }
     public float getY() {
         return y;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Coordinates obj = (Coordinates) o;
+        if (this.y>obj.y) return 1;
+        return 0;
     }
 }

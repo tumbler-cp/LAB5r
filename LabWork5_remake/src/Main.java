@@ -3,11 +3,7 @@ import commands.*;
 import file.FileManager;
 import terminal.Terminal;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.Collections;
-import dragon.Dragon;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,6 +23,9 @@ public class Main {
             add("remove_key", new RemoveKey(collection));
             add("update", new UpdateId(collection));
             add("remove_lower_key", new RemoveLowerKey(collection));
+            add("filter_contains_name", new FilterName(collection));
+            add("print_field_ascending_color", new AscendingColor(collection));
+            add("replace_if_greater", new ReplaceGreater(collection));
         }};
         History history = new History();
         Terminal terminal = new Terminal(command_list, in, history);
